@@ -1,320 +1,400 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="img/icono.ico" type="image/x-icon">
-    <title>Sistema de Empleados</title>
+    <title>Document</title>
     <!-- CSS Propios -->
     <link rel="stylesheet" href="css/style.css" />
     <!-- CSS Bootstrap -->
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+
+    <!--sweetalert-->
+    <link rel="stylesheet" href="/node_modules/sweetalert2/dist/sweetalert2.min.css">
+
+
+     <!-- Iconos -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
     <!--Formulario-->
-    <div class="container">
-        <form id="empleado-form" class="container mt-4 text-center">
-            <div class="row ">
-                <div class="col-md-10 ">
-                    <h1>Sistema de Empleados</h1>
-                </div>
-                <div class="col-md-2">
-                    <img src="img/empleado.png" alt="logo" width="100" height="100">
-                </div>
-            </div>
 
-            <div class="row mt-4">
-                <label class="col-md-12 form-label titulo-formulario">Información Principal</label>
-            </div>
+    <div class="wrapperTitulo text-center">
+        <h4 class="text-left"> SISTEMA DE EMPLEADOS</h4>
+    </div>
 
-            <div class="row ">
-
-                <div class="col-sm-4">
-                    <label class="form-label">1. Numero Documento:</label>
-                    <input type="number" class="form-control" name="id" id="id" required
-                        placeholder="Registre Número de Documento" />
+    <div class="container-fluid">
+        
+        <form id="empleado-form" class=" text-center">
+            
+             <!-- DATOS PERSONALES-->
+            <div class="wrapper3">
+                <div class="row mt-2">
+                    <label class="col-md-12 form-label titulo-formulario">DATOS PERSONALES</label>
                 </div>
+                <div class="row mt-1">
+                    <div class="col-md-9">
+                        <div class=" row" style="text-align: left;">
+                            <div class="col-md-4">
+                                <label class="form-label"> <b>Número Documento</b></label>
+                                <input type="number" class="form-control" name="id" id="id" required
+                                    placeholder="Registre Número de Documento" />
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label"><b>Nombre</b></label>
+                                <input type="text" class="form-control" name="nombre" id="nombre" required
+                                    placeholder="Registre nombre completo" />
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label"> <b>Apellido</b> </label>
+                                <input type="text" class="form-control" name="apellido" id="apellido" required
+                                placeholder="Registre su apellido completo" />
+                            </div>                           
+                        </div>
+                
+                        <div class=" row mt-3" style="text-align: left;">
+                            <div class="col-md-4">
+                                <label class="form-label"> <b>Género</b></label>
+                                <select class="form-select" name="genero" id="genero">
+                                    <option disabled selected>Seleccione</option>
+                                    <option value="Masculino">Masculino</option>
+                                    <option value="Femenino">Femenino</option>
+                                    <option value="Otro">Otro</option>
+                                </select>
+                            </div>   
+                            <div class="col-md-4">
+                                <label class="form-label"> <b>Fecha de Nacimiento</b></label>
+                                <input type="date" class="form-control" name="fechaNacimiento" id="fechaNacimiento" required />
+                            </div> 
+                            <div class="col-md-4">
+                                <label class="form-label"> <b>Fecha de Ingreso</b></label>
+                                <input type="date" class="form-control" name="fechaIngreso" id="fechaIngreso" required />
+                            </div> 
 
-                <div class="col-sm-4">
-                    <label class="form-label">2. Nombre:</label>
-                    <input type="text" class="form-control" name="nombre" id="nombre" required
-                        placeholder="Registre nombre completo" />
-                </div>
-
-                <div class="col-sm-4">
-                    <label class="form-label">3. Apellido: </label>
-                    <input type="text" class="form-control" name="apellido" id="apellido" required
-                        placeholder="Registre su apellido completo" />
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm-4">
-                    <label class="form-label">4. Genero: </label>
-                    <select class="form-select" name="genero" id="genero">
-                        <option disabled selected>Seleccione</option>
-                        <option value="Masculino">Masculino</option>
-                        <option value="Femenino">Femenino</option>
-                    </select>
-                </div>
-                <div class="col-sm-4">
-                    <label class="form-label">5. Fecha de Nacimiento:</label>
-                    <input type="date" class="form-control" name="fechaNacimiento" id="fechaNacimiento" required />
-                </div>
-                <div class="col-sm-4">
-                    <label class="form-label">6. Fecha de Ingreso:</label>
-                    <input type="date" class="form-control" name="fechaIngreso" id="fechaIngreso" required />
-                </div>
-            </div>
-
-            <div class="row mt-4 ">
-                <label class="col-md-12 form-label titulo-formulario">Salario</label>
-            </div>
-
-            <div class="row ">
-                <div class="col-sm-9">
-                    <label class="form-label">1. Salario: </label>
-                    <input type="number" class="form-control" name="salarioBasico" id="salarioBasico" required
-                        placeholder="Ingrese su Salario Actual" />
-                </div>
-                <div class="col-sm-3" style="text-align: center">
-                    <button type="button" class="btn btn-primary btn-lg" onclick="CrearEmpleado()">Guardar
-                        Empleado</button>
-                </div>
-            </div>
-
-            <div class="row ">
-                <div class="col-sm-9">
-                    <label class="form-label">Buscar </label>
-                    <input type="text" class="form-control" name="buscarId" id="buscarId" required
-                        placeholder="Ingrese identificación del empleado" />
-                </div>
-                <div class="col-sm-3" style="text-align: center">
-                    <button type="button" class="btn btn-primary btn-lg" onclick="BuscarEmpleado()">Buscar
-                        Empleado</button>
-                </div>
-            </div>
-
-            <div class="row mt-4 ">
-                <label class="col-md-12 form-label titulo-formulario">Calculos</label>
-            </div>
-
-            <div class="row">
-
-                <div class="row mt-4">
-                    <div class="col-sm-4">
-                        <button type="button" class="btn btn-primary btn-lg"
-                            onclick="Calculoanios('edadactual')">Calcular Edad Actual</button>
+                        </div>
                     </div>
-                    <div class="col-sm-4">
-                        <label id="edadactual" name="edadactual"> Edad actual</label>
+                   
+                    <div class="col-md-3" style="margin-top: 10px;">
+                        <div class="wrapperMin">
+                            <div>
+                                <img src="img/agregar-usuario.png" alt="" width="100px" height="100px">
+                            </div>
+                    
+                        </div>
                     </div>
+    
                 </div>
-
-                <div class="row mt-4">
-                    <div class="col-sm-4">
-                        <button type="button" class="btn btn-primary btn-lg"
-                            onclick="Calculoanios('antiguedad')">Calcular Antiguedad</button>
-                    </div>
-                    <div class="col-sm-4">
-                        <label id="antiguedad" name="antiguedad"> Antiguedad actual</label>
-                    </div>
+            </div>
+           
+             <!-- SALARIO-->  
+             <div class="wrapper3 " style="text-align: left;">
+                <div class="row mt-2 ">
+                    <label class="col-md-12 form-label titulo-formulario">SALARIO</label>
                 </div>
-
-                <div class="row  mt-4">
-                    <div class="col-sm-4">
-                        <button type="button" class="btn btn-primary btn-lg" onclick="CalcularPrestaciones()">Calcular
-                            Prestaciones</button>
+    
+                <div class="row mt-2">
+                    <div class="col-sm-1 text-center">
+                        <label class="form-label"> <b>Salario</b> </label>
                     </div>
-                    <div class="col-sm-4">
-                        <label id="prestaciones"> Valor Prestaciones</label>
+                    <div class="col-sm-5 ">
+                        <input type="number" class="form-control" name="salarioBasico" id="salarioBasico" required
+                            placeholder="Ingrese su salario actual" />
+                    </div>
+                    <div class="col-sm-6 " style="margin-top: -1.6%;">
+                        <button type="button" class="btn   text-white" onclick="CrearEmpleado()" style="background-color: #89CC55;" >
+                            <i class="bi bi-save"></i> &nbsp;
+                            Guardar Empleado</button>
+                        <button type="reset" class="btn btn-info  text-white" id="limpiar" name="limpiar" onclick="LimpiarCampos()">
+                            <i class="fa fa-broom"></i> &nbsp;
+                            Limpiar campos
+                        </button>
                     </div>
 
                 </div>
+                <div class="row mt-2 ">
+                    <label class="col-md-12 form-label titulo-formulario">BUSCAR EMPLEADO</label>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-sm-1 text-center">
+                        <label class="form-label"> <b>Buscar</b> </label>
+                    </div>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" name="buscarId" id="buscarId" required
+                            placeholder="Ingrese identificación del empleado" />
+                    </div>
+                    <div class="col-sm-6" style="margin-top: -1.8%;">
+                        <button type="button" class="btn btn-info  text-white" onclick="BuscarEmpleado()">
+                            <i class="bi bi-search"></i> &nbsp;
+                            Buscar
+                        </button>
+                    </div>
+                </div>
+             </div>
 
-                <div class="row mt-4 ">
-                    <label class="col-md-12 form-label titulo-formulario">Puntos de Extención</label>
+             <!-- CALCULOS-->  
+             <div class="wrapper3 " style="text-align: left;">
+                <div class="row mt-2 ">
+                    <label class="col-md-12 form-label titulo-formulario">CÁLCULOS</label>
+                </div>
+                <div class="row mt-1">
+                    <div class="col-sm-3">
+                        <button type="button" class="btn btn-primary"
+                            onclick="Calculoanios('edadactual')">
+                            <i class="fa fa-calculator" aria-hidden="true"></i> &nbsp;
+                            Calcular Edad Actual</button>
+                    </div>
+                    <div class="col-sm-3" >
+                        <label  id="edadactual" name="edadactual" class="form-control"> Edad actual</label>
+                    </div> 
+                    <div class="col-sm-3">
+                        <button type="button" class="btn btn-primary"
+                        onclick="Calculoanios('antiguedad')">
+                        <i class="fa fa-calculator" aria-hidden="true"></i> &nbsp;
+                        Calcular Antiguedad</button>
+                    </div>
+                    <div class="col-sm-3" >
+                        <label id="antiguedad" name="antiguedad" class="form-control"> Antiguedad actual</label>
+                    </div> 
+
+                </div>
+                <div class="row mt-3">
+                    <div class="col-sm-3">
+                        <button type="button" class="btn btn-primary btn-xs " onclick="CalcularPrestaciones()">
+                            <i class="fa fa-calculator" aria-hidden="true"></i> &nbsp;   Prestaciones &nbsp; </button>
+                    </div>
+                    <div class="col-sm-3" >
+                        <label id="prestaciones" class="form-control"> Valor Prestaciones</label>
+                    </div> 
+
+                </div>
+    
+                
+             </div>
+          
+              <!-- PUNTOS DE EXTENSION-->  
+              <div class="wrapper3 " style="text-align: left;">
+                <div class="row mt-2 ">
+                    <label class="col-md-12 form-label titulo-formulario">PUNTOS DE EXTENSIÓN</label>
                 </div>
 
-                <div class="row ">
-                    <div class="col-sm-6">
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal">
+                <div class=" row text-center">
+                    <div class="col-md-12">
+                         <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-info text-white btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal">
                             Agregar Estudios
                         </button>
-
-                        <!-- Modal -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                            aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">opcion 1</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-
-                                        <div class="form-group">
-                                            <label for="institucion">Institución:</label>
-                                            <input type="text" class="form-control" id="institucion">
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="titulo">Título:</label>
-                                            <input type="text" class="form-control" id="titulo">
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="fechaObtencion">Fecha de Obtención:</label>
-                                            <input type="date" class="form-control" id="fechaObtencion">
-                                        </div>
-
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Cerrar</button>
-                                        <button type="button" class="btn btn-primary"
-                                            onclick="AgregarFormacionAcademica()">Guardar cambios</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="col-sm-6">
-                        <!--Nuevo modal -->
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                        <button type="button" class="btn btn-info text-white btn-lg" data-bs-toggle="modal"
                             data-bs-target="#modalModificar">
-                            Editar Datos Basicos Empleado
+                            Editar Datos Básicos
                         </button>
+                    </div>
+                <div class="col-md-6">
+                        
+                    </div>
+                   
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header tituloModal">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Formación Académica</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" style="background-color:white;"
+                                        aria-label="Close" ></button>
+                                </div>
+                                <div class="modal-body alinearIzquierda">
 
-                        <!-- Modal -->
-                        <div class="modal fade" id="modalModificar" tabindex="-1" aria-labelledby="modalModificarLabel"
-                            aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="modalModificarLabel">Modificar Empleado</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-
-                                    <div class="modal-body">
-                                        <div class="container">
-                                            <h1>Actualizar Empleado</h1>
-
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <label class="form-label">Buscar:</label>
-                                                    <input type="text" class="form-control" name="buscarIdModal"
-                                                        id="buscarIdModal" required
-                                                        placeholder="Ingrese identificación del empleado" />
-                                                </div>
-                                                <div class="col-sm-12 mt-2" style="text-align: center">
-                                                    <button type="button" class="btn btn-primary"
-                                                        onclick="BuscarEmpleadoModal()">Buscar Empleado</button>
-
-                                                </div>
-                                            </div>
-
-                                            <form id="empleado-form">
-
-
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <label class="form-label">2. Nombre:</label>
-                                                        <input type="text" class="form-control" name="nombreModal"
-                                                            id="nombreModal" required
-                                                            placeholder="Registre nombre completo" />
-                                                    </div>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <label class="form-label">3. Apellido:</label>
-                                                        <input type="text" class="form-control" name="apellidoModal"
-                                                            id="apellidoModal" required
-                                                            placeholder="Registre su apellido completo" />
-                                                    </div>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <label class="form-label">4. Género:</label>
-                                                        <select class="form-select" name="generoModal" id="generoModal">
-                                                            <option disabled selected>Seleccione</option>
-                                                            <option value="Masculino">Masculino</option>
-                                                            <option value="Femenino">Femenino</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <label class="form-label">5. Fecha de Nacimiento:</label>
-                                                        <input type="date" class="form-control"
-                                                            name="fechaNacimientoModal" id="fechaNacimientoModal"
-                                                            required />
-                                                    </div>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <label class="form-label">6. Fecha de Ingreso:</label>
-                                                        <input type="date" class="form-control" name="fechaIngresoModal"
-                                                            id="fechaIngresoModal" required />
-                                                    </div>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <label class="form-label">7. Salario:</label>
-                                                        <input type="number" class="form-control"
-                                                            name="salarioBasicoModal" id="salarioBasicoModal" required
-                                                            placeholder="Ingrese su Salario Actual" />
-                                                    </div>
-                                                </div>
-
-                                                <button type="button" onclick="ActualizarEmpleadoModal()"
-                                                    class="btn btn-primary">Actualizar</button>
-                                            </form>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <label class="form-label text-center">Identificación del empleado al cual desea agregarle la formación académica</label>
+                                            <input type="text" class="form-control" name="buscarFA"
+                                                id="buscarFA" required
+                                                placeholder="Ingrese identificación del empleado" />
+                                        </div>
+                                        <div class="col-sm-12 mt-2" style="text-align: center">
+                                            <button type="button" class="btn btn-info text-white"
+                                                onclick="BuscarEmpleadoModalFormacion()"> 
+                                                <i class="bi bi-search"></i> &nbsp;
+                                                Buscar Empleado</button>
+    
                                         </div>
                                     </div>
+    
 
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Cerrar</button>
-
+                                    <div class="form-group ">
+                                        <label for="institucion">Institución:</label>
+                                        <input type="text" class="form-control" id="institucion">
                                     </div>
+
+                                    <div class="form-group mt-2">
+                                        <label for="titulo">Título:</label>
+                                        <input type="text" class="form-control" id="titulo">
+                                    </div>
+
+                                    <div class="form-group mt-2">
+                                        <label for="fechaObtencion">Fecha de Obtención:</label>
+                                        <input type="date" class="form-control" id="fechaObtencion">
+                                    </div>
+
+                                </div>
+                                <div class="modal-footer mt-2">
+                                    <button type="button" class="btn btn-danger"
+                                        data-bs-dismiss="modal"> <i class="fa fa-times-circle" aria-hidden="true"></i> &nbsp; Cerrar</button>
+                                    <button type="button" class="btn text-white" style="background-color: #89CC55;"
+                                        onclick="AgregarFormacionAcademica()">  <i class="bi bi-save"></i> &nbsp;Guardar cambios</button>
                                 </div>
                             </div>
                         </div>
-
-
-
                     </div>
-
                 </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="modalModificar" tabindex="-1" aria-labelledby="modalModificarLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header tituloModal">
+                            <h1 class="modal-title fs-5" id="modalModificarLabel">Modificar Empleado</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" style="background-color:white;"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body alinearIzquierda">
+                            <div class="container">
+                                <h3 class="text-center">Actualizar Empleado</h3>
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label class="form-label">Buscar:</label>
+                                        <input type="text" class="form-control" name="buscarIdModal"
+                                            id="buscarIdModal" required
+                                            placeholder="Ingrese identificación del empleado" />
+                                    </div>
+                                    <div class="col-sm-12 mt-2" style="text-align: center">
+                                        <button type="button" class="btn btn-info text-white"
+                                            onclick="BuscarEmpleadoModal()"> 
+                                            <i class="bi bi-search"></i> &nbsp;
+                                            Buscar Empleado</button>
+
+                                    </div>
+                                </div>
+
+                                <form id="empleado-form">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <label class="form-label">Nombre:</label>
+                                            <input type="text" class="form-control" name="nombreModal"
+                                                id="nombreModal" required
+                                                placeholder="Registre nombre completo" />
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <label class="form-label">Apellido:</label>
+                                            <input type="text" class="form-control" name="apellidoModal"
+                                                id="apellidoModal" required
+                                                placeholder="Registre su apellido completo" />
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <label class="form-label">Género:</label>
+                                            <select class="form-select" name="generoModal" id="generoModal">
+                                                <option disabled selected>Seleccione</option>
+                                                <option value="Masculino">Masculino</option>
+                                                <option value="Femenino">Femenino</option>
+                                                <option value="Otro">Otro</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <label class="form-label">Fecha de Nacimiento:</label>
+                                            <input type="date" class="form-control"
+                                                name="fechaNacimientoModal" id="fechaNacimientoModal"
+                                                required />
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <label class="form-label">Fecha de Ingreso:</label>
+                                            <input type="date" class="form-control" name="fechaIngresoModal"
+                                                id="fechaIngresoModal" required />
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <label class="form-label">Salario:</label>
+                                            <input type="number" class="form-control"
+                                                name="salarioBasicoModal" id="salarioBasicoModal" required
+                                                placeholder="Ingrese su Salario Actual" />
+                                        </div>
+                                    </div>                                
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" onclick="ActualizarEmpleadoModal()"
+                                    class="btn text-white " style="background-color: #89CC55;"> <i class="bi bi-save"></i>
+                                    &nbsp; Actualizar
+                            </button>
+                            <button type="button" class="btn btn-danger"
+                                data-bs-dismiss="modal"> <i class="fa fa-times-circle" aria-hidden="true"></i> &nbsp;Cerrar
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+     
+             </div>
+            </div>
         </form>
     </div>
 
+    <br>
 
+    <div class=" ">
+        <footer    class="text-center text-lg-start text-white contenedorFooter">
+          <div class="container p-4 pb-0">
+            <section class="">
+              <div class="row text-center">
+                <p>
+                    <b> Universidad de Nariño</b> <br>
+                   Facultad de Ingeniería <br>
+                   Departamento de Sistemas <br>
+                   Seminario de Computación e informática <br>
+                   Desarrollado por: Angela Carina Cerón Bennavides <br>
+                   Victor Alfonso Delgado Bolaños<br>
+                  </p>
+            </section>
+      
+            <hr class="my-3">
+      
+            <section class="p-6 pt-0">
+                © 2023 Copyright: Seminario de computación e informática
+            </section>
+            <br>
+          </div>
+        </footer>
 
 
 
     <!-- JS Bootstrap -->
     <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-
-
+   <!--sweetalert-->
+   <script src="/node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
+    
     <script src="js/empleado.js"></script>
-
-
+    
+     
 
 
 </body>

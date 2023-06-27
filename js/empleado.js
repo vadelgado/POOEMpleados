@@ -13,19 +13,19 @@ class Empleado {
   }
 
   crearEmpleado(id, nombre, apellido, genero, fechaNacimiento, fechaIngreso, salarioBasico) {
-
     // Verificar si la ID ya está registrada
     var idExistente = empleados.some(function (empleado) {
       return empleado.id === id;
     });
 
     if (idExistente) {
-      alert("El Número de documento ya está registrado. No se puede crear el empleado.");
+      return true;     
     } else {
       var empleado = new Empleado(id, nombre, apellido, genero, fechaNacimiento, fechaIngreso, salarioBasico);
       empleados.push(empleado);
       // Mostrar los empleados en consola
       console.log(empleados);
+      return false;   
     }
   }
 
@@ -48,7 +48,18 @@ class Empleado {
       }
     }
     if (!encontrado) {
-      alert("Empleado no encontrado");
+      Swal.fire(
+        'Empleado no encontrado',
+        "",
+        'warning'
+      )
+    }
+    else{
+      Swal.fire(
+        'Empleado encontrado',
+        "",
+        'success'
+      )
     }
   }
 
@@ -68,7 +79,11 @@ class Empleado {
     }
 
     if (!encontrado) {
-      alert("Empleado no encontrado");
+      Swal.fire(
+        'Empleado no encontrado',
+        "",
+        'warning'
+      )
     }
   }
 
@@ -91,10 +106,18 @@ class Empleado {
     }
 
     if (encontrado) {
-      alert("Empleado actualizado");
+      Swal.fire(
+        'Empleado actualizado',
+        "",
+        'success'
+      )
       console.log("Empleado actualizado:", empleadoActualizado);
     } else {
-      alert("Empleado no encontrado");
+      Swal.fire(
+        'Empleado no encontrado',
+        "",
+        'warning'
+      )
     }
   }
 
@@ -112,8 +135,46 @@ function CrearEmpleado() {
   var fechaNacimiento = document.getElementById("fechaNacimiento").value;
   var fechaIngreso = document.getElementById("fechaIngreso").value;
   var salarioBasico = document.getElementById("salarioBasico").value;
+   
+  if(id=="" || nombre=="" || apellido=="" || genero=="" || fechaNacimiento=="" || fechaIngreso==""
+    || salarioBasico =="" ){
+      Swal.fire(
+        'Alerta',
+        'Por favor, llene todos los campos de DATOS PERSONALES y el SALARIO.',
+        'warning'
+      )
+    } 
+    else{
+      var respuesta = e.crearEmpleado(id, nombre, apellido, genero, fechaNacimiento, fechaIngreso, salarioBasico);
+      if(respuesta){
+        Swal.fire(
+          'Alerta',
+          'El Número de documento ya está registrado. No se puede crear el empleado.',
+          'warning'
+        )
+      }
+      else{
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Guardado exitoso!',
+          showConfirmButton: false,
+          timer: 1800
+        })
+        LimpiarCampos();
+      }
+   
+    }
 
-  e.crearEmpleado(id, nombre, apellido, genero, fechaNacimiento, fechaIngreso, salarioBasico);
+ 
+
+}
+
+function LimpiarCampos(){
+  var limpiar = document.getElementById("limpiar");
+  var id = document.getElementById("id");
+  id.disabled=false;
+  limpiar.click();
 }
 
 //funcion para buscar empleado
@@ -126,6 +187,12 @@ function BuscarEmpleado() {
 function BuscarEmpleadoModal() {
   var id = document.getElementById("buscarIdModal").value;
   e.buscarEmpleadoModal(id);
+}
+
+//funcion para buscar empleado en el modal de formación academica
+function BuscarEmpleadoModalFormacion() {
+  var id = document.getElementById("buscarFA").value;
+  e.buscarEmpleado(id);
 }
 
 //funcion para actualizar empleado en el modal
@@ -141,6 +208,7 @@ function Calculoanios(tipoCalculo) {
       tipoCalculo === "antiguedad" ? "fechaIngreso" : "fechaNacimiento"
     ).value
   );
+
   var fechaActual = new Date();
   var resultado = fechaActual.getFullYear() - fechaIngresada.getFullYear();
 
@@ -153,10 +221,18 @@ function Calculoanios(tipoCalculo) {
     resultado--;
   }
 
-  document.getElementById(
-    tipoCalculo === "antiguedad" ? "antiguedad" : "edadactual"
-  ).innerHTML = resultado;
-  console.log(antiguedad);
+  //
+  if (isNaN(fechaIngresada)) {
+    document.getElementById(
+      tipoCalculo === "antiguedad" ? "antiguedad" : "edadactual"
+    ).innerHTML = "0";
+  } else {
+    document.getElementById(
+      tipoCalculo === "antiguedad" ? "antiguedad" : "edadactual"
+    ).innerHTML = resultado;
+    console.log(antiguedad);
+  }
+
 }
 
 // calcular prestaciones actuales
@@ -189,12 +265,21 @@ class FormacionAcademica {
     var formacionAcademica = new FormacionAcademica(institucion, titulo, fechaObtencion);
     var id = document.getElementById("id").value;
 
-    var empleado = empleados.find(function (empleado) {
-      return empleado.id === id;
-    });
+    if(id!=""){
+      var empleado = empleados.find(function (empleado) {
+        return empleado.id === id;
+      });
+  
+      empleado.formacionAcademica.push(formacionAcademica);
+      console.log(empleados);
 
-    empleado.formacionAcademica.push(formacionAcademica);
-    console.log(empleados);
+      return true;
+    }
+    else{
+      return false;
+    }
+
+   
   }
 
 }
@@ -205,6 +290,32 @@ function AgregarFormacionAcademica() {
   var institucion = document.getElementById("institucion").value;
   var titulo = document.getElementById("titulo").value;
   var fechaObtencion = document.getElementById("fechaObtencion").value;
+  if(institucion=="" || titulo=="" || fechaObtencion ==""){
+    Swal.fire(
+      'Alerta',
+      'Por favor, llene todos los campos',
+      'warning'
+    )
+  }else{
+   var confirmar = f.agregarFormacionAcademica(institucion, titulo, fechaObtencion);
+   if (confirmar){
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Guardado exitoso!',
+      showConfirmButton: false,
+      timer: 1800
+    })
+   }
+   else{
+    Swal.fire(
+      'Alerta',
+      "Por favor, ingrese la identificación del empleado y verifique que el empleado exista.",
+      'warning'
+    )
+   }
 
-  f.agregarFormacionAcademica(institucion, titulo, fechaObtencion);
+  }
+
 }
+
