@@ -89,8 +89,8 @@
                 </div>
             </div>
            
-             <!-- SALARIO-->  
-             <div class="wrapper3 " style="text-align: left;">
+            <!-- SALARIO-->  
+            <div class="wrapper3 " style="text-align: left;">
                 <div class="row mt-2 ">
                     <label class="col-md-12 form-label titulo-formulario">SALARIO</label>
                 </div>
@@ -181,19 +181,26 @@
                 </div>
 
                 <div class=" row text-center">
-                    <div class="col-md-12">
+                    <div class="col-md-4">
                          <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-info text-white btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <button type="button" class="btn btn-info text-white btn-lg" data-bs-toggle="modal" 
+                        data-bs-target="#exampleModal">
                             Agregar Estudios
                         </button>
-                        <button type="button" class="btn btn-info text-white btn-lg" data-bs-toggle="modal"
-                            data-bs-target="#modalModificar">
-                            Editar Datos Básicos
-                        </button>
                     </div>
-                <div class="col-md-6">
-                        
-                    </div>
+                    <div class="col-md-4">
+                       <button type="button" class="btn btn-info text-white btn-lg" data-bs-toggle="modal"
+                           data-bs-target="#modalModificar">
+                           Editar Datos Básicos
+                       </button>
+                   </div>
+                   <div class="col-md-4">
+                   <button type="button" class="btn btn-info text-white btn-lg" data-bs-toggle="modal"
+                       data-bs-target="#modal" onclick="mostrarModal()">
+                       Mostrar Información académica
+                   </button>
+               </div>
+                </div>
                    
                     <!-- Modal -->
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -249,116 +256,138 @@
                             </div>
                         </div>
                     </div>
-                </div>
 
                 <!-- Modal -->
                 <div class="modal fade" id="modalModificar" tabindex="-1" aria-labelledby="modalModificarLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header tituloModal">
+                                <h1 class="modal-title fs-5" id="modalModificarLabel">Modificar Empleado</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" style="background-color:white;"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body alinearIzquierda">
+                                <div class="container">
+                                    <h3 class="text-center">Actualizar Empleado</h3>
+
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <label class="form-label">Buscar:</label>
+                                            <input type="text" class="form-control" name="buscarIdModal"
+                                                id="buscarIdModal" required
+                                                placeholder="Ingrese identificación del empleado" />
+                                        </div>
+                                        <div class="col-sm-12 mt-2" style="text-align: center">
+                                            <button type="button" class="btn btn-info text-white"
+                                                onclick="BuscarEmpleadoModal()"> 
+                                                <i class="bi bi-search"></i> &nbsp;
+                                                Buscar Empleado</button>
+
+                                        </div>
+                                    </div>
+
+                                    <form id="empleado-form">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <label class="form-label">Nombre:</label>
+                                                <input type="text" class="form-control" name="nombreModal"
+                                                    id="nombreModal" required
+                                                    placeholder="Registre nombre completo" />
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <label class="form-label">Apellido:</label>
+                                                <input type="text" class="form-control" name="apellidoModal"
+                                                    id="apellidoModal" required
+                                                    placeholder="Registre su apellido completo" />
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <label class="form-label">Género:</label>
+                                                <select class="form-select" name="generoModal" id="generoModal">
+                                                    <option disabled selected>Seleccione</option>
+                                                    <option value="Masculino">Masculino</option>
+                                                    <option value="Femenino">Femenino</option>
+                                                    <option value="Otro">Otro</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <label class="form-label">Fecha de Nacimiento:</label>
+                                                <input type="date" class="form-control"
+                                                    name="fechaNacimientoModal" id="fechaNacimientoModal"
+                                                    required />
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <label class="form-label">Fecha de Ingreso:</label>
+                                                <input type="date" class="form-control" name="fechaIngresoModal"
+                                                    id="fechaIngresoModal" required />
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <label class="form-label">Salario:</label>
+                                                <input type="number" class="form-control"
+                                                    name="salarioBasicoModal" id="salarioBasicoModal" required
+                                                    placeholder="Ingrese su Salario Actual" />
+                                            </div>
+                                        </div>                                
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" onclick="ActualizarEmpleadoModal()"
+                                        class="btn text-white " style="background-color: #89CC55;"> <i class="bi bi-save"></i>
+                                        &nbsp; Actualizar
+                                </button>
+                                <button type="button" class="btn btn-danger"
+                                    data-bs-dismiss="modal"> <i class="fa fa-times-circle" aria-hidden="true"></i> &nbsp;Cerrar
+                                </button>
+                            </div>   
+                        </div>
+                    </div>
+                </div> 
+
+
+                <!-- Modal 3-->
+                <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header tituloModal">
-                            <h1 class="modal-title fs-5" id="modalModificarLabel">Modificar Empleado</h1>
+                            <h1 class="modal-title fs-5" id="exampleModalLabel"> Formación Académica</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" style="background-color:white;"
-                                aria-label="Close"></button>
+                                aria-label="Close" ></button>
                         </div>
                         <div class="modal-body alinearIzquierda">
-                            <div class="container">
-                                <h3 class="text-center">Actualizar Empleado</h3>
-
-                                <div class="row">
-                                    <div class="col-12">
-                                        <label class="form-label">Buscar:</label>
-                                        <input type="text" class="form-control" name="buscarIdModal"
-                                            id="buscarIdModal" required
-                                            placeholder="Ingrese identificación del empleado" />
-                                    </div>
-                                    <div class="col-sm-12 mt-2" style="text-align: center">
-                                        <button type="button" class="btn btn-info text-white"
-                                            onclick="BuscarEmpleadoModal()"> 
-                                            <i class="bi bi-search"></i> &nbsp;
-                                            Buscar Empleado</button>
-
-                                    </div>
-                                </div>
-
-                                <form id="empleado-form">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <label class="form-label">Nombre:</label>
-                                            <input type="text" class="form-control" name="nombreModal"
-                                                id="nombreModal" required
-                                                placeholder="Registre nombre completo" />
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <label class="form-label">Apellido:</label>
-                                            <input type="text" class="form-control" name="apellidoModal"
-                                                id="apellidoModal" required
-                                                placeholder="Registre su apellido completo" />
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <label class="form-label">Género:</label>
-                                            <select class="form-select" name="generoModal" id="generoModal">
-                                                <option disabled selected>Seleccione</option>
-                                                <option value="Masculino">Masculino</option>
-                                                <option value="Femenino">Femenino</option>
-                                                <option value="Otro">Otro</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <label class="form-label">Fecha de Nacimiento:</label>
-                                            <input type="date" class="form-control"
-                                                name="fechaNacimientoModal" id="fechaNacimientoModal"
-                                                required />
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <label class="form-label">Fecha de Ingreso:</label>
-                                            <input type="date" class="form-control" name="fechaIngresoModal"
-                                                id="fechaIngresoModal" required />
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <label class="form-label">Salario:</label>
-                                            <input type="number" class="form-control"
-                                                name="salarioBasicoModal" id="salarioBasicoModal" required
-                                                placeholder="Ingrese su Salario Actual" />
-                                        </div>
-                                    </div>                                
-                                </form>
-                            </div>
-                        </div>
-
-                        <div class="modal-footer">
-                            <button type="button" onclick="ActualizarEmpleadoModal()"
-                                    class="btn text-white " style="background-color: #89CC55;"> <i class="bi bi-save"></i>
-                                    &nbsp; Actualizar
-                            </button>
-                            <button type="button" class="btn btn-danger"
-                                data-bs-dismiss="modal"> <i class="fa fa-times-circle" aria-hidden="true"></i> &nbsp;Cerrar
-                            </button>
+                            <ul id="listaCampos"></ul>
 
                         </div>
                     </div>
                 </div>
             </div>
-     
+            </div>
+            </div>
              </div>
             </div>
         </form>
     </div>
+
+
+      
+  </div>
 
     <br>
 
@@ -384,9 +413,7 @@
             </section>
             <br>
           </div>
-        </footer>
-
-
+        </footer> 
 
     <!-- JS Bootstrap -->
     <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>

@@ -1,5 +1,6 @@
 var empleados = [];
 
+
 class Empleado {
   constructor(id, nombre, apellido, genero, fechaNacimiento, fechaIngreso, salarioBasico) {
     this.id = id;
@@ -10,6 +11,7 @@ class Empleado {
     this.fechaIngreso = fechaIngreso;
     this.salarioBasico = salarioBasico;
     this.formacionAcademica = [];
+    
   }
 
   crearEmpleado(id, nombre, apellido, genero, fechaNacimiento, fechaIngreso, salarioBasico) {
@@ -28,6 +30,7 @@ class Empleado {
       return false;   
     }
   }
+
 
   buscarEmpleado(id) {
     var encontrado = false;
@@ -260,26 +263,26 @@ function CalcularPrestaciones() {
 //---------------------------------------------------------------------------------------------------
 // clase agregar formacion academica
 class FormacionAcademica {
-  constructor(tipo, institucion, fechaInicio, fechaFinalizacion) {
-    this.tipo = tipo;
+  constructor(id,institucion, titulo, fechaObtencion) {
+    this.id=id;
     this.institucion = institucion;
-    this.fechaInicio = fechaInicio;
-    this.fechaFinalizacion = fechaFinalizacion;
+    this.titulo = titulo;
+    this.fechaObtencion = fechaObtencion;
   }
 
   //metodo para agregar formacion academica al array formacionAcademica del empleado
-  agregarFormacionAcademica(institucion, titulo, fechaObtencion) {
-    var formacionAcademica = new FormacionAcademica(institucion, titulo, fechaObtencion);
+  agregarFormacionAcademica(id, institucion, titulo, fechaObtencion) {
     var id = document.getElementById("id").value;
+    var formacionAcademica = new FormacionAcademica(id, institucion, titulo, fechaObtencion);
+  
 
     if(id!=""){
       var empleado = empleados.find(function (empleado) {
         return empleado.id === id;
-      });
-  
+      });  
       empleado.formacionAcademica.push(formacionAcademica);
+      e.formacionAcademica.push(formacionAcademica);
       console.log(empleados);
-
       return true;
     }
     else{
@@ -297,6 +300,7 @@ function AgregarFormacionAcademica() {
   var institucion = document.getElementById("institucion").value;
   var titulo = document.getElementById("titulo").value;
   var fechaObtencion = document.getElementById("fechaObtencion").value;
+  var id = document.getElementById("buscarFA").value;
   if(institucion=="" || titulo=="" || fechaObtencion ==""){
     Swal.fire(
       'Alerta',
@@ -304,15 +308,17 @@ function AgregarFormacionAcademica() {
       'warning'
     )
   }else{
-   var confirmar = f.agregarFormacionAcademica(institucion, titulo, fechaObtencion);
+   var confirmar = f.agregarFormacionAcademica(id,institucion, titulo, fechaObtencion);
    if (confirmar){
     Swal.fire({
       position: 'center',
       icon: 'success',
       title: 'Guardado exitoso!',
-      showConfirmButton: false,
-      timer: 1800
+      html: '<b>Institución:</b> '+institucion+'<br><b>Título:</b>: '+titulo+'<br> <b> Fecha Obtención:</b> '+fechaObtencion,
+      showConfirmButton: true,
+      //timer: 1800
     })
+
    }
    else{
     Swal.fire(
@@ -324,5 +330,32 @@ function AgregarFormacionAcademica() {
 
   }
 
+
 }
+
+function mostrarModal() {
+  var listaCampos = document.getElementById('listaCampos');
+  var id = document.getElementById("id").value;
+  listaCampos.innerHTML = '';
+  if(id!=""){
+    e.formacionAcademica.forEach(function(elemento) {
+      if(id==elemento.id){
+        var listItem = document.createElement('li');
+        listItem.innerHTML = 'Institución: ' + elemento.institucion + '<br>' +
+        ' Título:'+elemento.titulo + '<br>' +
+        ' Fecha Obtención:'+elemento.fechaObtencion ;
+        listaCampos.appendChild(listItem);
+      }
+     
+    });
+  }
+  else{
+    var listItem = document.createElement('li');
+    listItem.innerHTML = 'Primero debe ingresar la identificacón del empleado en el buscador, para poder listar la formación academica.' ;
+    listaCampos.appendChild(listItem);
+  }
+ 
+}
+
+
 
