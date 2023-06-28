@@ -157,7 +157,7 @@ function CrearEmpleado() {
         Swal.fire({
           position: 'center',
           icon: 'success',
-          title: 'Guardado exitoso!',
+          title: 'Guardado exitoso revise la consola!',
           showConfirmButton: false,
           timer: 1800
         })
@@ -173,6 +173,13 @@ function CrearEmpleado() {
 function LimpiarCampos(){
   var limpiar = document.getElementById("limpiar");
   var id = document.getElementById("id");
+  var edad = document.getElementById('edadactual');
+  var antiguedad =document.getElementById('antiguedad');
+  var pres =document.getElementById('prestaciones');
+  edad.textContent="Edad Actual";
+  antiguedad.textContent="Antiguedad Actual";
+  pres.textContent = "Valor Prestaciones";
+  
   id.disabled=false;
   limpiar.click();
 }
